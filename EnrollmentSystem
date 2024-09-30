@@ -1,0 +1,62 @@
+package javaenrollmentcode;
+
+import java.util.Scanner;
+
+public class EnrollmentSystem {
+
+    public static void main(String[] args) {
+    	
+        Scanner scanner = new Scanner(System.in);
+        final int FEE_PER_UNIT = 1000;  // Fee per unit
+
+        // Loop to handle up to 10 subjects
+        String name, course, courseCode;
+        int numberOfUnits, totalFee = 0, payment;
+        boolean validUnits = false;
+
+        // Input student details
+        System.out.println("Enter Student Name: ");
+        name = scanner.nextLine();
+
+        System.out.println("Enter Course Name: ");
+        course = scanner.nextLine();
+
+        System.out.println("Enter Course Code: ");
+        courseCode = scanner.nextLine();
+
+        // Loop until a valid number of units is entered (max 10 units)
+        while (!validUnits) {
+        	
+            System.out.println("Enter Number of Units (max 10): ");
+            numberOfUnits = scanner.nextInt();
+            
+            if (numberOfUnits > 0 && numberOfUnits <= 10) {
+                validUnits = true;
+                totalFee = numberOfUnits * FEE_PER_UNIT;  // Calculate total fee
+            } else {
+                System.out.println("Invalid number of units. Please enter a value between 1 and 10.");
+            }
+        }
+        
+
+        // Output student's name and total enrollment fee
+        System.out.println("Student Name: " + name);
+        System.out.println("Course: " + course + " (" + courseCode + ")");
+        System.out.println("Total Enrollment Fee: " + totalFee);
+
+        //  payment
+        System.out.println("Enter Payment Amount: ");
+        payment = scanner.nextInt();
+
+        if (payment == totalFee) {
+            System.out.println("Fully Paid");
+        } else if (payment < totalFee) {
+            System.out.println("Partial Payment. Amount Paid: " + payment);
+        } else {
+            System.out.println("Overpayment! Payment exceeds the total fee.");
+        }
+
+ 
+    }
+}
+
